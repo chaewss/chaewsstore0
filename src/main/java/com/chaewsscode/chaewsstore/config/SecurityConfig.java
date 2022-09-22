@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -17,9 +16,10 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends SecurityConfigurerAdapter {
+    // 스프링 시큐리티에 필요한 설정
 
+    private final TokenProvider tokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final JwtFilter jwtFilter;
@@ -68,7 +68,11 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
             .antMatchers("/auth/**").permitAll()
-            .anyRequest().authenticated(); // 나머지 API 는 전부 인증 필요;
+            .anyRequest().authenticated() // 나머지 API 는 전부 인증 필요;
+
+        // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
+            .and()
+            .apply(new JwtSecurityConfig(tokenProvider));
 
         return http.build();
     }

@@ -1,11 +1,13 @@
 package com.chaewsscode.chaewsstore.auth.service;
 
+import com.chaewsscode.chaewsstore.auth.controller.dto.AccountInfoResponseDto;
 import com.chaewsscode.chaewsstore.auth.controller.dto.AccountResponseDto;
 import com.chaewsscode.chaewsstore.auth.service.dto.SigninServiceDto;
 import com.chaewsscode.chaewsstore.auth.service.dto.SignupServiceDto;
 import com.chaewsscode.chaewsstore.config.TokenProvider;
 import com.chaewsscode.chaewsstore.domain.Account;
 import com.chaewsscode.chaewsstore.domain.RefreshToken;
+import com.chaewsscode.chaewsstore.exception.DuplicateException;
 import com.chaewsscode.chaewsstore.exception.ResourceNotFoundException;
 import com.chaewsscode.chaewsstore.repository.AccountRepository;
 import com.chaewsscode.chaewsstore.repository.RefreshTokenRepository;
@@ -75,7 +77,7 @@ public class AuthService implements UserDetailsService {
 
         refreshTokenRepository.save(refreshToken);
 
-        //인증된 Authentication를 SecurityContext에 저장
+        // 인증된 Authentication를 SecurityContext에 저장
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // 5. 토큰 포함 현재 유저 정보 반환
@@ -86,9 +88,18 @@ public class AuthService implements UserDetailsService {
 
     @Transactional(rollbackFor = Exception.class)
     public void signup(SignupServiceDto serviceDto) {
+        // 아이디 중복 확인
+        if (accountRepository.existsByUsername(serviceDto.getUsername())) {
+            throw new DuplicateException(ResponseCode.ACCOUNT_DUPLICATION);
+        }
+
         // 계정 생성
         Account account = serviceDto.toAccount(passwordEncoder);
         accountRepository.save(account);
+    }
+
+    public AccountInfoResponseDto readAccountInfo(Account account) {
+        return AccountInfoResponseDto.of(account);
     }
 
 }

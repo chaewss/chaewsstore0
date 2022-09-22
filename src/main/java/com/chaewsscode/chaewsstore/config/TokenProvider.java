@@ -27,6 +27,8 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class TokenProvider {
+    // 유저 정보로 JWT 토큰을 만들거나 토큰을 바탕으로 유저 정보를 가져옴
+    // JWT 토큰에 관련된 암호화, 복호화, 검증 로직
 
     private static final String AUTHORITIES_KEY = "auth";
     private static final String BEARER_TYPE = "bearer";
@@ -36,11 +38,13 @@ public class TokenProvider {
 
     private final Key key;
 
+    // jwt.secret 값으로 JWT 를 만들 때 사용하는 암호화 키값 생성
     public TokenProvider(@Value("${jwt.secret}") String secretKey) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
+    // 유저 정보를 넘겨받아 Access Token 과 Refresh Token 생성
     public TokenDto generateTokenDto(Authentication authentication) {
         // 권한들 가져오기
         String authorities = authentication.getAuthorities().stream()
@@ -72,8 +76,8 @@ public class TokenProvider {
             .build();
     }
 
+    // JWT 토큰을 복호화하여 토큰에 들어 있는 정보 꺼냄
     public Authentication getAuthentication(String accessToken) {
-        // 토큰 복호화
         Claims claims = parseClaims(accessToken);
 
         if (claims.get(AUTHORITIES_KEY) == null) {
@@ -92,6 +96,7 @@ public class TokenProvider {
         return new UsernamePasswordAuthenticationToken(principal, accessToken, authorities);
     }
 
+    // 토큰 정보 검증
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);

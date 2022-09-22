@@ -1,14 +1,18 @@
 package com.chaewsscode.chaewsstore.auth.controller;
 
+import com.chaewsscode.chaewsstore.auth.controller.dto.AccountInfoResponseDto;
 import com.chaewsscode.chaewsstore.auth.controller.dto.AccountResponseDto;
 import com.chaewsscode.chaewsstore.auth.controller.dto.SigninRequestDto;
 import com.chaewsscode.chaewsstore.auth.controller.dto.SignupRequestDto;
 import com.chaewsscode.chaewsstore.auth.service.AuthService;
+import com.chaewsscode.chaewsstore.domain.Account;
+import com.chaewsscode.chaewsstore.util.LoginAccount;
 import com.chaewsscode.chaewsstore.util.ResponseCode;
 import com.chaewsscode.chaewsstore.util.ResponseData;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,5 +40,10 @@ public class AuthController {
         return ResponseData.toResponseEntity(ResponseCode.SIGNUP_SUCCESS);
     }
 
-
+    // 회원 상세 정보 조회
+    @GetMapping("my-page")
+    public ResponseEntity<ResponseData<AccountInfoResponseDto>> readAccountInfo(@LoginAccount Account account) {
+        AccountInfoResponseDto data = authService.readAccountInfo(account);
+        return ResponseData.toResponseEntity(ResponseCode.READ_ACCOUNT_INFO_SUCCESS, data);
+    }
 }
