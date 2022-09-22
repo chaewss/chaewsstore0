@@ -32,8 +32,15 @@ public class ProductController {
         return ResponseData.toResponseEntity(ResponseCode.CREATE_PRODUCT_SUCCESS, data);
     }
 
-    // 본인 상품 조회
+    // 전체 상품 조회
     @GetMapping()
+    public ResponseEntity<ResponseData<Page<ProductResponseDto>>> readProducts(Pageable pageable) {
+        Page<ProductResponseDto> data = productService.readProducts(pageable);
+        return ResponseData.toResponseEntity(ResponseCode.READ_PRODUCTS_SUCCESS, data);
+    }
+
+    // 본인 상품 조회
+    @GetMapping("my")
     public ResponseEntity<ResponseData<Page<ProductResponseDto>>> readMyProducts(
         @LoginAccount Account account, Pageable pageable) {
         Page<ProductResponseDto> data = productService.readMyProducts(account, pageable);

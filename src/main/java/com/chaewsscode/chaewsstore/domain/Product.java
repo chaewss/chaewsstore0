@@ -31,6 +31,8 @@ public class Product extends BaseTimeEntity {
     @NotNull
     private Integer price;
 
+    private Boolean isSold;
+
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;

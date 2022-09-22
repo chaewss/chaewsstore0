@@ -11,6 +11,7 @@ public class ProductResponseDto {
     private Long id;
     private String name;
     private Integer price;
+    private Boolean isSold;
     private Long accountId;
 
     public static ProductResponseDto of(Product product) {
@@ -18,6 +19,7 @@ public class ProductResponseDto {
             .id(product.getId())
             .name(product.getName())
             .price(product.getPrice())
+            .isSold(product.getIsSold())
             .accountId(product.getAccount().getId())
             .build();
     }

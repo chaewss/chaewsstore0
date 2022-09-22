@@ -24,6 +24,10 @@ public class ProductService {
         return ProductResponseDto.of(product);
     }
 
+    public Page<ProductResponseDto> readProducts(Pageable pageable) {
+        return productRepository.findAllByIsSoldIsFalse(pageable).map(ProductResponseDto::of);
+    }
+
     public Page<ProductResponseDto> readMyProducts(Account account, Pageable pageable) {
         return productRepository.findAllByAccount(account, pageable).map(ProductResponseDto::of);
     }

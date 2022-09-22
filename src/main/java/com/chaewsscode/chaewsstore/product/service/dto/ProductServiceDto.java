@@ -17,6 +17,7 @@ public class ProductServiceDto {
         return Product.builder()
             .name(name)
             .price(price)
+            .isSold(false)
             .account(account)
             .build();
     }
