@@ -2,6 +2,7 @@ package com.chaewsscode.chaewsstore.product;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -361,5 +362,27 @@ class ProductControllerUnitTest {
                         .description("상품 주인 고유번호")
                 ))
             );
+    }
+
+    @Test
+    @DisplayName("상품 삭제 테스트")
+    void deleteProductTest() throws Exception {
+        mockMvc.perform(
+                RestDocumentationRequestBuilders.delete("/products/{productId}", 1L)
+                    .header(HttpHeaders.AUTHORIZATION, accessToken))
+            .andDo(print()).andExpect(status().isOk())
+            .andDo(document("{class-name}/{method-name}",
+                preprocessRequest(modifyUris().scheme(scheme).host(host).port(port), prettyPrint()),
+                preprocessResponse(prettyPrint()),
+                requestHeaders(
+                    headerWithName(HttpHeaders.AUTHORIZATION)
+                        .description("Bearer Type의 AccessToken 값")
+                ),
+                pathParameters(
+                    parameterWithName("productId").description("삭제할 상품 고유번호")
+                )
+            ));
+
+        verify(productService).deleteProduct(any(), any());
     }
 }

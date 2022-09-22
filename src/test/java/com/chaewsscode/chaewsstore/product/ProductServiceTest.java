@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -208,5 +209,59 @@ class ProductServiceTest {
         // then
         verify(productRepository, times(1)).findById(any());
         assertThat(result.getResponseCode()).isEqualTo(ResponseCode.UPDATE_PRODUCT_FAIL_NOT_OWNER);
+    }
+
+    @Test
+    @DisplayName("상품 삭제 성공")
+    void deleteProductSuccess() {
+        // given
+        Long productId = 1L;
+
+        // mocking
+        given(productRepository.findById(any())).willReturn(Optional.of(product1));
+        doNothing().when(productRepository).delete(product1);
+
+        // when
+        productService.deleteProduct(account1, productId);
+
+        // then
+        verify(productRepository, times(1)).findById(any());
+        verify(productRepository, times(1)).delete(any());
+    }
+
+    @Test
+    @DisplayName("상품 삭제 실패 - 상품 Not Found")
+    void deleteProductFailProductNotFound() {
+        // given
+        Long productId = 100L;
+
+        // mocking
+        given(productRepository.findById(any())).willReturn(Optional.empty());
+
+        // when
+        ResourceNotFoundException result = assertThrows(ResourceNotFoundException.class,
+            () -> productService.deleteProduct(account1, productId));
+
+        // then
+        verify(productRepository, times(1)).findById(any());
+        assertThat(result.getResponseCode()).isEqualTo(ResponseCode.PRODUCT_NOT_FOUND);
+    }
+
+    @Test
+    @DisplayName("상품 삭제 실패 - 상품 Not Owner")
+    void deleteProductFailProductNotOwner() {
+        // given
+        Long productId = 2L;
+
+        // mocking
+        given(productRepository.findById(any())).willReturn(Optional.of(product2));
+
+        // when
+        ForbiddenException result = assertThrows(ForbiddenException.class,
+            () -> productService.deleteProduct(account1, productId));
+
+        // then
+        verify(productRepository, times(1)).findById(any());
+        assertThat(result.getResponseCode()).isEqualTo(ResponseCode.DELETE_PRODUCT_FAIL_NOT_OWNER);
     }
 }
