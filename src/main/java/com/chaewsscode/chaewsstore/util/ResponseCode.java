@@ -1,6 +1,7 @@
 package com.chaewsscode.chaewsstore.util;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
@@ -22,7 +23,7 @@ public enum ResponseCode {
     RESET_PASSWORD_SUCCESS(OK, "비밀번호 재설정 성공"),
 
     /* 201 CREATED : 요청 성공, 자원 생성 */
-
+    CREATE_PRODUCT_SUCCESS(CREATED, "상품 등록 성공"),
 
     /* 400 BAD_REQUEST : 잘못된 요청 */
 
