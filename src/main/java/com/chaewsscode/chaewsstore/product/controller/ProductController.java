@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,4 +60,11 @@ public class ProductController {
         return ResponseData.toResponseEntity(ResponseCode.UPDATE_PRODUCT_SUCCESS, data);
     }
 
+    // 상품 삭제
+    @DeleteMapping("{productId}")
+    public ResponseEntity<ResponseData> deleteProduct(@LoginAccount Account account,
+        @PathVariable Long productId) {
+        productService.deleteProduct(account, productId);
+        return ResponseData.toResponseEntity(ResponseCode.DELETE_PRODUCT_SUCCESS);
+    }
 }

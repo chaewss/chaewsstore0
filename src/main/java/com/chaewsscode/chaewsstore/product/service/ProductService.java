@@ -54,4 +54,15 @@ public class ProductService {
         return ProductResponseDto.of(product);
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteProduct(Account account, Long productId) {
+        Product product = productRepository.findById(productId)
+            .orElseThrow(() -> new ResourceNotFoundException(ResponseCode.PRODUCT_NOT_FOUND));
+
+        // 상품 주인 확인
+        if (!product.getAccount().equals(account)) {
+            throw new ForbiddenException(ResponseCode.DELETE_PRODUCT_FAIL_NOT_OWNER);
+        }
+        productRepository.delete(product);
+    }
 }

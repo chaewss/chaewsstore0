@@ -27,6 +27,7 @@ public enum ResponseCode {
     READ_PRODUCTS_SUCCESS(OK, "전체 상품 목록 조회 성공"),
     READ_MY_PRODUCTS_SUCCESS(OK, "내 상품 목록 조회 성공"),
     UPDATE_PRODUCT_SUCCESS(OK, "상품 수정 성공"),
+    DELETE_PRODUCT_SUCCESS(OK, "상품 삭제 성공"),
 
     /* 201 CREATED : 요청 성공, 자원 생성 */
     CREATE_PRODUCT_SUCCESS(CREATED, "상품 등록 성공"),
@@ -39,6 +40,7 @@ public enum ResponseCode {
 
     /* 403 FORBIDDEN : 권한이 없는 사용자 */
     UPDATE_PRODUCT_FAIL_NOT_OWNER(FORBIDDEN, "본인 상품만 수정할 수 있습니다"),
+    DELETE_PRODUCT_FAIL_NOT_OWNER(FORBIDDEN, "본인 상품만 삭제할 수 있습니다"),
 
     /* 404 NOT_FOUND : Resource 를 찾을 수 없음 */
     ACCOUNT_NOT_FOUND(NOT_FOUND, "회원을 찾을 수 없습니다."),
