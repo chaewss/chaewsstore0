@@ -43,7 +43,7 @@ public class ProductService {
     public ProductResponseDto updateProduct(Account account, Long productId,
         UpdateProductRequestDto request) {
         Product product = productRepository.findById(productId)
-            .orElseThrow(() -> new ResourceNotFoundException(ResponseCode.ACCOUNT_NOT_FOUND));
+            .orElseThrow(() -> new ResourceNotFoundException(ResponseCode.PRODUCT_NOT_FOUND));
 
         // 상품 주인 확인
         if (!product.getAccount().equals(account)) {

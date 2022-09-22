@@ -42,6 +42,7 @@ public enum ResponseCode {
 
     /* 404 NOT_FOUND : Resource 를 찾을 수 없음 */
     ACCOUNT_NOT_FOUND(NOT_FOUND, "회원을 찾을 수 없습니다."),
+    PRODUCT_NOT_FOUND(NOT_FOUND, "상품을 찾을 수 없습니다."),
 
     /* 409 CONFLICT : Resource 의 현재 상태와 충돌. 보통 중복된 데이터 존재 */
     ACCOUNT_DUPLICATION(CONFLICT, "이미 사용 중인 아이디입니다"),
