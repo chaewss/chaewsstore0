@@ -22,6 +22,8 @@ public enum ResponseCode {
     READ_ACCOUNT_INFO_SUCCESS(OK, "회원 정보 조회 성공"),
     RESET_PASSWORD_SUCCESS(OK, "비밀번호 재설정 성공"),
 
+    READ_MY_PRODUCTS_SUCCESS(OK, "내 상품 목록 조회 성공"),
+
     /* 201 CREATED : 요청 성공, 자원 생성 */
     CREATE_PRODUCT_SUCCESS(CREATED, "상품 등록 성공"),
 
