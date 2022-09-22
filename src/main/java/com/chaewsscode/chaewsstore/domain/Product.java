@@ -37,4 +37,9 @@ public class Product extends BaseTimeEntity {
     @JoinColumn(name = "account_id")
     private Account account;
 
+    public void setInfo(Integer price, Boolean isSold) {
+        this.price = price;
+        this.isSold = isSold;
+    }
+
 }
