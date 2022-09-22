@@ -2,6 +2,7 @@ package com.chaewsscode.chaewsstore.auth.service;
 
 import com.chaewsscode.chaewsstore.auth.controller.dto.AccountInfoResponseDto;
 import com.chaewsscode.chaewsstore.auth.controller.dto.AccountResponseDto;
+import com.chaewsscode.chaewsstore.auth.controller.dto.ResetPasswordRequestDto;
 import com.chaewsscode.chaewsstore.auth.service.dto.SigninServiceDto;
 import com.chaewsscode.chaewsstore.auth.service.dto.SignupServiceDto;
 import com.chaewsscode.chaewsstore.config.TokenProvider;
@@ -100,6 +101,13 @@ public class AuthService implements UserDetailsService {
 
     public AccountInfoResponseDto readAccountInfo(Account account) {
         return AccountInfoResponseDto.of(account);
+    }
+
+    public void resetPassword(ResetPasswordRequestDto request) {
+        Account account = accountRepository.findByUsername(request.getUsername())
+            .orElseThrow(() -> new ResourceNotFoundException(ResponseCode.ACCOUNT_NOT_FOUND));
+
+        account.setPassword(passwordEncoder.encode(request.getPassword()));
     }
 
 }

@@ -46,4 +46,8 @@ public class Account extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }

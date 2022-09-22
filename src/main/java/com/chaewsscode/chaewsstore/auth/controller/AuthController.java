@@ -2,6 +2,7 @@ package com.chaewsscode.chaewsstore.auth.controller;
 
 import com.chaewsscode.chaewsstore.auth.controller.dto.AccountInfoResponseDto;
 import com.chaewsscode.chaewsstore.auth.controller.dto.AccountResponseDto;
+import com.chaewsscode.chaewsstore.auth.controller.dto.ResetPasswordRequestDto;
 import com.chaewsscode.chaewsstore.auth.controller.dto.SigninRequestDto;
 import com.chaewsscode.chaewsstore.auth.controller.dto.SignupRequestDto;
 import com.chaewsscode.chaewsstore.auth.service.AuthService;
@@ -45,5 +46,12 @@ public class AuthController {
     public ResponseEntity<ResponseData<AccountInfoResponseDto>> readAccountInfo(@LoginAccount Account account) {
         AccountInfoResponseDto data = authService.readAccountInfo(account);
         return ResponseData.toResponseEntity(ResponseCode.READ_ACCOUNT_INFO_SUCCESS, data);
+    }
+
+    // 비밀번호 재설정
+    @PostMapping("reset-password")
+    public ResponseEntity<ResponseData> resetPassword(@Valid @RequestBody ResetPasswordRequestDto request) {
+        authService.resetPassword(request);
+        return ResponseData.toResponseEntity(ResponseCode.RESET_PASSWORD_SUCCESS);
     }
 }
