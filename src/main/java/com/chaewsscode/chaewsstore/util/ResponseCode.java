@@ -39,6 +39,8 @@ public enum ResponseCode {
 
     /* 400 BAD_REQUEST : 잘못된 요청 */
     VALID_ERROR(BAD_REQUEST, "유효성 검사 실패"),
+    UPDATE_PRODUCT_FAIL_ALREADY_SOLDOUT(BAD_REQUEST, "이미 주문된 상품은 수정할 수 없습니다"),
+    DELETE_PRODUCT_FAIL_ALREADY_SOLDOUT(BAD_REQUEST, "이미 주문된 상품은 삭제할 수 없습니다"),
 
     /* 401 UNAUTHORIZED : 인증되지 않은 사용자 */
     INVALID_AUTH_TOKEN(UNAUTHORIZED, "권한 정보가 없는 토큰입니다"),

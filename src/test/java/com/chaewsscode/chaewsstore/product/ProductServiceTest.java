@@ -11,13 +11,14 @@ import static org.mockito.Mockito.verify;
 
 import com.chaewsscode.chaewsstore.domain.Account;
 import com.chaewsscode.chaewsstore.domain.Product;
+import com.chaewsscode.chaewsstore.exception.BadRequestException;
 import com.chaewsscode.chaewsstore.exception.ForbiddenException;
 import com.chaewsscode.chaewsstore.exception.ResourceNotFoundException;
 import com.chaewsscode.chaewsstore.product.controller.dto.ProductResponseDto;
 import com.chaewsscode.chaewsstore.product.controller.dto.UpdateProductRequestDto;
 import com.chaewsscode.chaewsstore.product.service.ProductService;
 import com.chaewsscode.chaewsstore.product.service.dto.ProductServiceDto;
-import com.chaewsscode.chaewsstore.repository.AccountRepository;
+import com.chaewsscode.chaewsstore.repository.CustomerOrderRepository;
 import com.chaewsscode.chaewsstore.repository.ProductRepository;
 import com.chaewsscode.chaewsstore.util.ResponseCode;
 import java.util.List;
@@ -37,10 +38,10 @@ import org.springframework.data.domain.Pageable;
 class ProductServiceTest {
 
     @Mock
-    private AccountRepository accountRepository;
+    private ProductRepository productRepository;
 
     @Mock
-    private ProductRepository productRepository;
+    private CustomerOrderRepository orderRepository;
 
     @Mock
     private Pageable pageable;
@@ -157,12 +158,14 @@ class ProductServiceTest {
 
         // mocking
         given(productRepository.findById(any())).willReturn(Optional.of(product));
+        given(orderRepository.existsByProduct(any())).willReturn(false);
 
         // when
         productService.updateProduct(account1, productId, requestDto);
 
         // then
         verify(productRepository, times(1)).findById(any());
+        verify(orderRepository, times(1)).existsByProduct(any());
     }
 
     @Test
@@ -212,6 +215,32 @@ class ProductServiceTest {
     }
 
     @Test
+    @DisplayName("상품 정보 수정 실패 - 상품 Sold out")
+    void updateProductFailProductSoldOut() {
+        // given
+        Long productId = 1L;
+
+        UpdateProductRequestDto requestDto = UpdateProductRequestDto.builder()
+            .price(5000)
+            .isSold(true)
+            .build();
+
+        // mocking
+        given(productRepository.findById(any())).willReturn(Optional.of(product1));
+        given(orderRepository.existsByProduct(any())).willReturn(true);
+
+        // when
+        BadRequestException result = assertThrows(BadRequestException.class,
+            () -> productService.updateProduct(account1, productId, requestDto));
+
+        // then
+        verify(productRepository, times(1)).findById(any());
+        verify(orderRepository, times(1)).existsByProduct(any());
+        assertThat(result.getResponseCode()).isEqualTo(
+            ResponseCode.UPDATE_PRODUCT_FAIL_ALREADY_SOLDOUT);
+    }
+
+    @Test
     @DisplayName("상품 삭제 성공")
     void deleteProductSuccess() {
         // given
@@ -219,6 +248,7 @@ class ProductServiceTest {
 
         // mocking
         given(productRepository.findById(any())).willReturn(Optional.of(product1));
+        given(orderRepository.existsByProduct(any())).willReturn(false);
         doNothing().when(productRepository).delete(product1);
 
         // when
@@ -226,6 +256,7 @@ class ProductServiceTest {
 
         // then
         verify(productRepository, times(1)).findById(any());
+        verify(orderRepository, times(1)).existsByProduct(any());
         verify(productRepository, times(1)).delete(any());
     }
 
@@ -263,5 +294,26 @@ class ProductServiceTest {
         // then
         verify(productRepository, times(1)).findById(any());
         assertThat(result.getResponseCode()).isEqualTo(ResponseCode.DELETE_PRODUCT_FAIL_NOT_OWNER);
+    }
+
+    @Test
+    @DisplayName("상품 삭제 실패 - 상품 Sold out")
+    void deleteProductFailProductSoldOut() {
+        // given
+        Long productId = 1L;
+
+        // mocking
+        given(productRepository.findById(any())).willReturn(Optional.of(product1));
+        given(orderRepository.existsByProduct(any())).willReturn(true);
+
+        // when
+        BadRequestException result = assertThrows(BadRequestException.class,
+            () -> productService.deleteProduct(account1, productId));
+
+        // then
+        verify(productRepository, times(1)).findById(any());
+        verify(orderRepository, times(1)).existsByProduct(any());
+        assertThat(result.getResponseCode()).isEqualTo(
+            ResponseCode.DELETE_PRODUCT_FAIL_ALREADY_SOLDOUT);
     }
 }
