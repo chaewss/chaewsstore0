@@ -45,4 +45,18 @@ public class OrderService {
         return orderRepository.findAllByAccount(account, pageable).map(OrderResponseDto::of);
     }
 
+    @Transactional(readOnly = true)
+    public OrderResponseDto readOrder(Account account, Long orderId) {
+        CustomerOrder order = orderRepository.findById(orderId)
+            .orElseThrow(() -> new ResourceNotFoundException(ResponseCode.ORDER_NOT_FOUND));
+
+        // 주문자 or 판매자 확인
+        if (!order.getAccount().equals(account) && !order.getProduct().getAccount()
+            .equals(account)) {
+            throw new ForbiddenException(ResponseCode.READ_ORDER_FAIL_NOT_OWNER);
+        }
+
+        return OrderResponseDto.of(order);
+    }
+
 }

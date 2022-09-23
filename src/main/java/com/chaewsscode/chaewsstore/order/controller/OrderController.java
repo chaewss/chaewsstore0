@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,14 @@ public class OrderController {
         @LoginAccount Account account, Pageable pageable) {
         Page<OrderResponseDto> data = orderService.readOrders(account, pageable);
         return ResponseData.toResponseEntity(ResponseCode.READ_ORDERS_SUCCESS, data);
+    }
+
+    // 내 주문 상세 조회
+    @GetMapping("{orderId}")
+    public ResponseEntity<ResponseData<OrderResponseDto>> readOrder(@LoginAccount Account account,
+        @PathVariable Long orderId) {
+        OrderResponseDto data = orderService.readOrder(account, orderId);
+        return ResponseData.toResponseEntity(ResponseCode.READ_ORDER_SUCCESS, data);
     }
 
 }
