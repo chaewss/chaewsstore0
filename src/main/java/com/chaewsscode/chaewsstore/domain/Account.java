@@ -1,6 +1,5 @@
 package com.chaewsscode.chaewsstore.domain;
 
-import com.chaewsscode.chaewsstore.util.Authority;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -44,9 +43,6 @@ public class Account extends BaseTimeEntity {
 
     @NotNull
     private String email;
-
-    @Enumerated(EnumType.STRING)
-    private Authority authority;
 
     public void setPassword(String password) {
         this.password = password;
