@@ -129,8 +129,8 @@ class OrderControllerUnitTest {
     }
 
     @Test
-    @DisplayName("상품 등록 테스트")
-    void createProductTest() throws Exception {
+    @DisplayName("상품 주문 테스트")
+    void createOrderTest() throws Exception {
         OrderRequestDto requestDto = OrderRequestDto.builder()
             .productId(1L)
             .build();

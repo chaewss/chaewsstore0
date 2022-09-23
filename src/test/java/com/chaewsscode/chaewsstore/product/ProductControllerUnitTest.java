@@ -281,6 +281,9 @@ class ProductControllerUnitTest {
                     headerWithName(HttpHeaders.AUTHORIZATION)
                         .description("Bearer Type의 AccessToken 값")
                 ),
+                pathParameters(
+                    parameterWithName("productId").description("상품 고유번호")
+                ),
                 relaxedResponseFields(
                     fieldWithPath("data.id").type(JsonFieldType.NUMBER).description("상품 고유번호"),
                     fieldWithPath("data.name").type(JsonFieldType.STRING)
