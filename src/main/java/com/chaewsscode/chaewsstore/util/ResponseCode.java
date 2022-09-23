@@ -18,7 +18,6 @@ public enum ResponseCode {
 
     /* 200 OK : 요청 성공 */
     SIGNIN_SUCCESS(OK, "로그인 성공"),
-    SIGNUP_SUCCESS(OK, "회원가입 성공"),
     SIGNOUT_SUCCESS(OK, "로그아웃 성공"),
 
     READ_ACCOUNT_INFO_SUCCESS(OK, "회원 정보 조회 성공"),
@@ -34,6 +33,8 @@ public enum ResponseCode {
     READ_ORDER_SUCCESS(OK, "내 주문 상세 조회 성공"),
 
     /* 201 CREATED : 요청 성공, 자원 생성 */
+    SIGNUP_SUCCESS(CREATED, "회원가입 성공"),
+
     CREATE_PRODUCT_SUCCESS(CREATED, "상품 등록 성공"),
 
     CREATE_ORDER_SUCCESS(CREATED, "주문 성공"),
