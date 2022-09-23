@@ -35,6 +35,13 @@ public class ProductService {
         return productRepository.findAllByAccount(account, pageable).map(ProductResponseDto::of);
     }
 
+    @Transactional(readOnly = true)
+    public ProductResponseDto readProduct(Long productId) {
+        return productRepository.findById(productId)
+            .map(ProductResponseDto::of)
+            .orElseThrow(() -> new ResourceNotFoundException(ResponseCode.PRODUCT_NOT_FOUND));
+    }
+
     @Transactional(rollbackFor = Exception.class)
     public ProductResponseDto createProduct(Account account, ProductServiceDto serviceDto) {
         Product product = serviceDto.toProduct(account);

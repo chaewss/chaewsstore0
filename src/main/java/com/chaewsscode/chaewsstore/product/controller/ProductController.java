@@ -43,6 +43,13 @@ public class ProductController {
         return ResponseData.toResponseEntity(ResponseCode.READ_MY_PRODUCTS_SUCCESS, data);
     }
 
+    // 상품 상세 조회
+    @GetMapping("{productId}")
+    public ResponseEntity<ResponseData<ProductResponseDto>> readProduct(@PathVariable Long productId) {
+        ProductResponseDto data = productService.readProduct(productId);
+        return ResponseData.toResponseEntity(ResponseCode.READ_PRODUCT_SUCCESS, data);
+    }
+
     // 상품 등록
     @PostMapping()
     public ResponseEntity<ResponseData<ProductResponseDto>> createProduct(
