@@ -255,6 +255,47 @@ class ProductControllerUnitTest {
     }
 
     @Test
+    @DisplayName("상품 상세 조회 테스트")
+    void readProductTest() throws Exception {
+        ProductResponseDto productResponseDto = ProductResponseDto.builder()
+            .id(1L)
+            .name("자전거")
+            .price(70000)
+            .isSold(false)
+            .accountId(2L)
+            .build();
+
+        given(productService.readProduct(any())).willReturn(productResponseDto);
+
+        ResultActions result = mockMvc.perform(
+                RestDocumentationRequestBuilders.get("/products/{productId}", 1L)
+                    .header(HttpHeaders.AUTHORIZATION, accessToken)
+                    .accept(MediaType.APPLICATION_JSON))
+            .andDo(print());
+
+        result.andDo(print()).andExpect(status().isOk())
+            .andDo(document("{class-name}/{method-name}",
+                preprocessRequest(modifyUris().scheme(scheme).host(host).port(port), prettyPrint()),
+                preprocessResponse(prettyPrint()),
+                requestHeaders(
+                    headerWithName(HttpHeaders.AUTHORIZATION)
+                        .description("Bearer Type의 AccessToken 값")
+                ),
+                relaxedResponseFields(
+                    fieldWithPath("data.id").type(JsonFieldType.NUMBER).description("상품 고유번호"),
+                    fieldWithPath("data.name").type(JsonFieldType.STRING)
+                        .description("상품명"),
+                    fieldWithPath("data.price").type(JsonFieldType.NUMBER)
+                        .description("상품 가격"),
+                    fieldWithPath("data.isSold").type(JsonFieldType.BOOLEAN)
+                        .description("상품 품절 여부"),
+                    fieldWithPath("data.accountId").type(JsonFieldType.NUMBER)
+                        .description("상품 주인 고유번호")
+                ))
+            );
+    }
+
+    @Test
     @DisplayName("상품 등록 테스트")
     void createProductTest() throws Exception {
         ProductRequestDto requestDto = ProductRequestDto.builder()

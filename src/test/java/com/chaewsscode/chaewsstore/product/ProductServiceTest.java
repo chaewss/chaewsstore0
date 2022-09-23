@@ -111,6 +111,40 @@ class ProductServiceTest {
     }
 
     @Test
+    @DisplayName("상품 상세 조회 성공")
+    void readProductSuccess() {
+        // given
+        Long productId = 1L;
+
+        // mocking
+        given(productRepository.findById(any())).willReturn(Optional.of(product1));
+
+        // when
+        productService.readProduct(productId);
+
+        // then
+        verify(productRepository, times(1)).findById(any());
+    }
+
+    @Test
+    @DisplayName("상품 상세 조회 실패 Not Found")
+    void readProductFailProductNotFound() {
+        // given
+        Long productId = 100L;
+
+        // mocking
+        given(productRepository.findById(any())).willReturn(Optional.empty());
+
+        // when
+        ResourceNotFoundException result = assertThrows(ResourceNotFoundException.class,
+            () -> productService.readProduct(productId));
+
+        // then
+        verify(productRepository, times(1)).findById(any());
+        assertThat(result.getResponseCode()).isEqualTo(ResponseCode.PRODUCT_NOT_FOUND);
+    }
+
+    @Test
     @DisplayName("상품 등록 성공")
     void createProductSuccess() {
         // given
