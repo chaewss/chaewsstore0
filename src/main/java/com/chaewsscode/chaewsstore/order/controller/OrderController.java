@@ -32,4 +32,12 @@ public class OrderController {
         return ResponseData.toResponseEntity(ResponseCode.CREATE_ORDER_SUCCESS, data);
     }
 
+    // 내 주문 목록 조회
+    @GetMapping()
+    public ResponseEntity<ResponseData<Page<OrderResponseDto>>> readOrders(
+        @LoginAccount Account account, Pageable pageable) {
+        Page<OrderResponseDto> data = orderService.readOrders(account, pageable);
+        return ResponseData.toResponseEntity(ResponseCode.READ_ORDERS_SUCCESS, data);
+    }
+
 }

@@ -11,6 +11,8 @@ import com.chaewsscode.chaewsstore.repository.CustomerOrderRepository;
 import com.chaewsscode.chaewsstore.repository.ProductRepository;
 import com.chaewsscode.chaewsstore.util.ResponseCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +38,11 @@ public class OrderService {
         product.setIsSoldTrue();
 
         return OrderResponseDto.of(order);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<OrderResponseDto> readOrders(Account account, Pageable pageable) {
+        return orderRepository.findAllByAccount(account, pageable).map(OrderResponseDto::of);
     }
 
 }
