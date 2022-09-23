@@ -11,12 +11,14 @@ import com.chaewsscode.chaewsstore.util.LoginAccount;
 import com.chaewsscode.chaewsstore.util.ResponseCode;
 import com.chaewsscode.chaewsstore.util.ResponseData;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
@@ -32,6 +34,14 @@ public class AuthController {
         @RequestBody @Valid SigninRequestDto request) {
         AccountResponseDto data = authService.signin(request.toServiceDto());
         return ResponseData.toResponseEntity(ResponseCode.SIGNIN_SUCCESS, data);
+    }
+
+    // 로그아웃
+    @GetMapping("signout")
+    public ResponseEntity<ResponseData> signout(
+        @RequestParam("refresh-token") @NotBlank String refreshToken) {
+        authService.signout(refreshToken);
+        return ResponseData.toResponseEntity(ResponseCode.SIGNOUT_SUCCESS);
     }
 
     // 회원가입

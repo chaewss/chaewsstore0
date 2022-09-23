@@ -55,6 +55,7 @@ public enum ResponseCode {
     READ_ORDER_FAIL_NOT_OWNER(FORBIDDEN, "본인 주문만 읽을 수 있습니다"),
 
     /* 404 NOT_FOUND : Resource 를 찾을 수 없음 */
+    REFRESH_TOKEN_NOT_FOUND(NOT_FOUND, "REFRESH 토큰 정보를 찾을 수 없습니다"),
     ACCOUNT_NOT_FOUND(NOT_FOUND, "회원을 찾을 수 없습니다."),
     PRODUCT_NOT_FOUND(NOT_FOUND, "상품을 찾을 수 없습니다."),
     ORDER_NOT_FOUND(NOT_FOUND, "주문을 찾을 수 없습니다."),

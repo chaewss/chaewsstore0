@@ -24,7 +24,7 @@ public class RefreshToken {
     private Long id;
 
     @NotNull
-    @OneToOne(orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
 

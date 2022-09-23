@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 @Configuration
@@ -20,6 +21,7 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
     // 스프링 시큐리티에 필요한 설정
 
     private final TokenProvider tokenProvider;
+    private final HttpLogoutSuccessHandler logoutSuccessHandler;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final JwtFilter jwtFilter;
@@ -73,6 +75,12 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
         // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
             .and()
             .apply(new JwtSecurityConfig(tokenProvider));
+
+        http.logout()
+            .permitAll()
+            .logoutRequestMatcher(new AntPathRequestMatcher("/signout"))
+            .logoutSuccessHandler(logoutSuccessHandler)
+            .invalidateHttpSession(true);
 
         return http.build();
     }

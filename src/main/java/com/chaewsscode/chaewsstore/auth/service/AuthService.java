@@ -87,6 +87,15 @@ public class AuthService implements UserDetailsService {
         return accountResponseDto;
     }
 
+    // 로그아웃
+    @Transactional(rollbackFor = Exception.class)
+    public void signout(String refreshToken) {
+        // refresh token 삭제
+        RefreshToken deleteRefreshToken = refreshTokenRepository.findByTokenValue(refreshToken)
+            .orElseThrow(() -> new ResourceNotFoundException(ResponseCode.REFRESH_TOKEN_NOT_FOUND));
+        refreshTokenRepository.delete(deleteRefreshToken);
+    }
+
     @Transactional(rollbackFor = Exception.class)
     public void signup(SignupServiceDto serviceDto) {
         // 아이디 중복 확인
