@@ -32,6 +32,8 @@ public enum ResponseCode {
     /* 201 CREATED : 요청 성공, 자원 생성 */
     CREATE_PRODUCT_SUCCESS(CREATED, "상품 등록 성공"),
 
+    CREATE_ORDER_SUCCESS(CREATED, "주문 성공"),
+
     /* 400 BAD_REQUEST : 잘못된 요청 */
     VALID_ERROR(BAD_REQUEST, "유효성 검사 실패"),
 
@@ -41,6 +43,8 @@ public enum ResponseCode {
     /* 403 FORBIDDEN : 권한이 없는 사용자 */
     UPDATE_PRODUCT_FAIL_NOT_OWNER(FORBIDDEN, "본인 상품만 수정할 수 있습니다"),
     DELETE_PRODUCT_FAIL_NOT_OWNER(FORBIDDEN, "본인 상품만 삭제할 수 있습니다"),
+
+    CREATE_ORDER_FAIL_OWNER(FORBIDDEN, "본인 상품은 구매할 수 없습니다"),
 
     /* 404 NOT_FOUND : Resource 를 찾을 수 없음 */
     ACCOUNT_NOT_FOUND(NOT_FOUND, "회원을 찾을 수 없습니다."),

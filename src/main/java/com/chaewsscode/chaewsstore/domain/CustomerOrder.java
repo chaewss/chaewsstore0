@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,11 +26,12 @@ public class CustomerOrder extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(unique = true)
-    private String orderNum;
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
-    @NotNull
-    private String name;
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
 }

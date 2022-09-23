@@ -42,4 +42,8 @@ public class Product extends BaseTimeEntity {
         this.isSold = isSold;
     }
 
+    public void setIsSoldTrue() {
+        this.isSold = true;
+    }
+
 }
