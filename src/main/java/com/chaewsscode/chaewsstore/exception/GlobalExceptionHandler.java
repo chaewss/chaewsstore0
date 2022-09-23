@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -127,5 +128,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             data.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
         return ResponseData.toResponseEntity(ResponseCode.VALID_ERROR, data);
+    }
+
+    // Security 관련 예외
+    @ExceptionHandler(BadCredentialsException.class)
+    protected ResponseEntity<ResponseData> handleBadCredentialsException(
+        BadCredentialsException e) {
+        log.info("handleBadCredentialsException : {}", ResponseCode.INVALID_EMAIL_PASSWORD);
+        return ResponseData.toResponseEntity(ResponseCode.INVALID_EMAIL_PASSWORD);
     }
 }

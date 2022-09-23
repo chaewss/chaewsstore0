@@ -41,6 +41,8 @@ public enum ResponseCode {
 
     /* 400 BAD_REQUEST : 잘못된 요청 */
     VALID_ERROR(BAD_REQUEST, "유효성 검사 실패"),
+    INVALID_EMAIL_PASSWORD(BAD_REQUEST, "이메일이나 비밀번호가 맞지 않습니다"),
+
     UPDATE_PRODUCT_FAIL_ALREADY_SOLDOUT(BAD_REQUEST, "이미 주문된 상품은 수정할 수 없습니다"),
     DELETE_PRODUCT_FAIL_ALREADY_SOLDOUT(BAD_REQUEST, "이미 주문된 상품은 삭제할 수 없습니다"),
 
