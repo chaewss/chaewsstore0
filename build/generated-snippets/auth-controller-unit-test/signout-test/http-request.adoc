@@ -1,6 +1,0 @@
-[source,http,options="nowrap"]
-----
-GET /auth/signout?refresh-token=refreshToken HTTP/1.1
-Host: 3.38.29.135:8080
-
-----

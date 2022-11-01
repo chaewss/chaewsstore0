@@ -1,4 +1,0 @@
-[source,bash]
-----
-$ curl 'http://3.38.29.135:8080/auth/signout?refresh-token=refreshToken' -i -X GET
-----

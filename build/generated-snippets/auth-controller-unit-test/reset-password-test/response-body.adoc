@@ -1,9 +1,0 @@
-[source,options="nowrap"]
-----
-{
-  "timestamp" : "2022-09-28T01:42:19.753367",
-  "code" : "RESET_PASSWORD_SUCCESS",
-  "status" : "OK",
-  "detail" : "비밀번호 재설정 성공"
-}
-----

@@ -1,9 +1,0 @@
-[source,bash]
-----
-$ echo '{
-  "username" : "tiger",
-  "password" : "abcdefg123!"
-}' | http POST 'http://3.38.29.135:8080/auth/reset-password' \
-    'Content-Type:application/json;charset=UTF-8' \
-    'Accept:application/json'
-----

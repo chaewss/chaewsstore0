@@ -1,7 +1,0 @@
-[source,options="nowrap"]
-----
-{
-  "price" : 90000,
-  "isSold" : true
-}
-----
