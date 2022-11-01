@@ -1,0 +1,7 @@
+[source,options="nowrap"]
+----
+{
+  "name" : "에어팟",
+  "price" : 80000
+}
+----

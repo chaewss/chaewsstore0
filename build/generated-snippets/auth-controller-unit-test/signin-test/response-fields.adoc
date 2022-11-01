@@ -1,0 +1,32 @@
+|===
+|Path|Type|Description
+
+|`+data.id+`
+|`+Number+`
+|사용자의 고유한 아이디 값
+
+|`+data.username+`
+|`+String+`
+|사용자의 아이디
+
+|`+data.nickname+`
+|`+String+`
+|사용자의 닉네임
+
+|`+data.tokenDto.grantType+`
+|`+String+`
+|JWT Token 타입
+
+|`+data.tokenDto.accessToken+`
+|`+String+`
+|JWT Access Token 값
+
+|`+data.tokenDto.accessTokenExpiresIn+`
+|`+Number+`
+|JWT Access Token 유효기간
+
+|`+data.tokenDto.refreshToken+`
+|`+String+`
+|JWT Refresh Token 값
+
+|===

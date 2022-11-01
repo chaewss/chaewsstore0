@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.chaewsscode.chaewsstore.order.OrderServiceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-09-27T16:42:20" hostname="seochaewon-ui-MacBookPro.local" time="0.078">
+  <properties/>
+  <testcase name="상품 등록 실패 - 상품 Not Found" classname="com.chaewsscode.chaewsstore.order.OrderServiceTest" time="0.069"/>
+  <testcase name="내 주문 목록 조회 성공" classname="com.chaewsscode.chaewsstore.order.OrderServiceTest" time="0.001"/>
+  <testcase name="내 주문 상세 조회 성공" classname="com.chaewsscode.chaewsstore.order.OrderServiceTest" time="0.001"/>
+  <testcase name="상품 등록 성공" classname="com.chaewsscode.chaewsstore.order.OrderServiceTest" time="0.001"/>
+  <testcase name="내 주문 상세 조회 실패 - 주문 Not Found" classname="com.chaewsscode.chaewsstore.order.OrderServiceTest" time="0.001"/>
+  <testcase name="내 주문 상세 조회 실패 - 주문자 or 판매자 아님" classname="com.chaewsscode.chaewsstore.order.OrderServiceTest" time="0.001"/>
+  <testcase name="상품 등록 실패 - 상품 주인" classname="com.chaewsscode.chaewsstore.order.OrderServiceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,10 @@
+|===
+|Parameter|Description
+
+|`+page+`
+|페이지 번호
+
+|`+sort+`
+|정렬 기준
+
+|===

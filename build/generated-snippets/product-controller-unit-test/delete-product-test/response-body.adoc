@@ -1,0 +1,9 @@
+[source,options="nowrap"]
+----
+{
+  "timestamp" : "2022-09-28T01:42:20.484277",
+  "code" : "DELETE_PRODUCT_SUCCESS",
+  "status" : "OK",
+  "detail" : "상품 삭제 성공"
+}
+----

@@ -1,0 +1,7 @@
+|===
+|Name|Description
+
+|`+Authorization+`
+|Bearer Type의 AccessToken 값
+
+|===

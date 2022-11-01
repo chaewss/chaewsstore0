@@ -1,0 +1,9 @@
+[source,bash]
+----
+$ echo '{
+  "productId" : 1
+}' | http POST 'http://3.38.29.135:8080/orders' \
+    'Content-Type:application/json;charset=UTF-8' \
+    'Authorization:Bearer (accessToken)' \
+    'Accept:application/json'
+----

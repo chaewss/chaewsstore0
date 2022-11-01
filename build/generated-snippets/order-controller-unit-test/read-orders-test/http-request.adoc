@@ -1,0 +1,8 @@
+[source,http,options="nowrap"]
+----
+GET /orders?page=0&sort=createdAt HTTP/1.1
+Authorization: Bearer (accessToken)
+Accept: application/json
+Host: 3.38.29.135:8080
+
+----

@@ -1,0 +1,24 @@
+|===
+|Path|Type|Description
+
+|`+username+`
+|`+String+`
+|회원가입할 사용자의 아이디
+
+|`+password+`
+|`+String+`
+|회원가입할 사용자의 비밀번호
+
+|`+nickname+`
+|`+String+`
+|회원가입할 사용자의 닉네임
+
+|`+phone+`
+|`+String+`
+|회원가입할 사용자의 핸드폰번호
+
+|`+email+`
+|`+String+`
+|회원가입할 사용자의 이메일
+
+|===

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.chaewsscode.chaewsstore.product.ProductServiceTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2022-09-27T16:42:20" hostname="seochaewon-ui-MacBookPro.local" time="0.018">
+  <properties/>
+  <testcase name="상품 정보 수정 실패 - 상품 Sold out" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.002"/>
+  <testcase name="상품 삭제 실패 - 상품 Not Found" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.001"/>
+  <testcase name="상품 삭제 실패 - 상품 Not Owner" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.001"/>
+  <testcase name="본인 상품 조회 성공" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.001"/>
+  <testcase name="상품 정보 수정 성공" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.001"/>
+  <testcase name="상품 정보 수정 실패 - 상품 Not Found" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.001"/>
+  <testcase name="상품 정보 수정 실패 - 상품 Not Owner" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.001"/>
+  <testcase name="전체 상품 조회 성공" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.001"/>
+  <testcase name="상품 상세 조회 성공" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.001"/>
+  <testcase name="상품 등록 성공" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.001"/>
+  <testcase name="상품 삭제 성공" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.002"/>
+  <testcase name="상품 삭제 실패 - 상품 Sold out" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.001"/>
+  <testcase name="상품 상세 조회 실패 Not Found" classname="com.chaewsscode.chaewsstore.product.ProductServiceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

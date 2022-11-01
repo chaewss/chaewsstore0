@@ -1,0 +1,11 @@
+[source,bash]
+----
+$ curl 'http://3.38.29.135:8080/products/4' -i -X PATCH \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Authorization: Bearer (accessToken)' \
+    -H 'Accept: application/json' \
+    -d '{
+  "price" : 90000,
+  "isSold" : true
+}'
+----

@@ -1,0 +1,22 @@
+[source,options="nowrap"]
+----
+{
+  "timestamp" : "2022-09-28T01:42:20.119984",
+  "code" : "CREATE_ORDER_SUCCESS",
+  "status" : "CREATED",
+  "detail" : "주문 성공",
+  "data" : {
+    "id" : 1,
+    "accountId" : 1,
+    "product" : {
+      "id" : 1,
+      "name" : "자전거",
+      "price" : 70000,
+      "isSold" : false,
+      "accountId" : 2,
+      "createdAt" : null
+    },
+    "createdAt" : "22.09.28 - 01:42"
+  }
+}
+----

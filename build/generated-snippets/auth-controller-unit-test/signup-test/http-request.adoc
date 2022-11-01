@@ -1,0 +1,16 @@
+[source,http,options="nowrap"]
+----
+POST /auth/signup HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Content-Length: 144
+Host: 3.38.29.135:8080
+
+{
+  "username" : "tiger",
+  "password" : "abcdefg123!",
+  "nickname" : "가나다라",
+  "phone" : "01012345678",
+  "email" : "abcd@gmail.com"
+}
+----

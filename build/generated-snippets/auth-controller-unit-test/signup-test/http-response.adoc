@@ -1,0 +1,13 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 201 Created
+Content-Type: application/json;charset=UTF-8
+Content-Length: 136
+
+{
+  "timestamp" : "2022-09-28T01:42:19.82271",
+  "code" : "SIGNUP_SUCCESS",
+  "status" : "CREATED",
+  "detail" : "회원가입 성공"
+}
+----

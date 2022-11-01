@@ -1,0 +1,6 @@
+[source,bash]
+----
+$ curl 'http://3.38.29.135:8080/products/1' -i -X GET \
+    -H 'Authorization: Bearer (accessToken)' \
+    -H 'Accept: application/json'
+----

@@ -1,0 +1,21 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 291
+
+{
+  "timestamp" : "2022-09-28T01:42:20.473366",
+  "code" : "READ_PRODUCT_SUCCESS",
+  "status" : "OK",
+  "detail" : "상품 상세 조회 성공",
+  "data" : {
+    "id" : 1,
+    "name" : "자전거",
+    "price" : 70000,
+    "isSold" : false,
+    "accountId" : 2,
+    "createdAt" : null
+  }
+}
+----

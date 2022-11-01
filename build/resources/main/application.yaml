@@ -1,0 +1,26 @@
+test.server.http.scheme: http
+test.server.http.host: 3.38.29.135
+test.server.http.port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://chaewsstore-db.cekojwgf0b3w.ap-northeast-2.rds.amazonaws.com:3306/chaewsstore_rds
+    username: root
+    password: chaewsstore1!
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+
+jwt:
+  header: Authorization
+  secret: ae0a556c3196c1f02318945fa00c460b3641fae9aad75a991dea31b906c8e4618c92e156eb3940583891ff4ab90175b92d797e5c89525bd0fe868fed8d077496
+  token-validity-in-seconds: 86400

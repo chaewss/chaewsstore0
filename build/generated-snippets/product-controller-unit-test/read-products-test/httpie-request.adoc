@@ -1,0 +1,6 @@
+[source,bash]
+----
+$ http GET 'http://3.38.29.135:8080/products?page=0&sort=createdAt' \
+    'Authorization:Bearer (accessToken)' \
+    'Accept:application/json'
+----

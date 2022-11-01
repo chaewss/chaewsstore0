@@ -1,0 +1,7 @@
+|===
+|Parameter|Description
+
+|`+refresh-token+`
+|refreshToken 값
+
+|===

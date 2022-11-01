@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ curl 'http://3.38.29.135:8080/products/1' -i -X DELETE \
+    -H 'Authorization: Bearer (accessToken)'
+----

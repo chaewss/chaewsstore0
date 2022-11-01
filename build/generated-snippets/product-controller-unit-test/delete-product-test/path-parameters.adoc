@@ -1,0 +1,8 @@
+.+/products/{productId}+
+|===
+|Parameter|Description
+
+|`+productId+`
+|삭제할 상품 고유번호
+
+|===

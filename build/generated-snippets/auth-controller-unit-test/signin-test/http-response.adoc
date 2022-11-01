@@ -1,0 +1,24 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 393
+
+{
+  "timestamp" : "2022-09-28T01:42:19.802402",
+  "code" : "SIGNIN_SUCCESS",
+  "status" : "OK",
+  "detail" : "로그인 성공",
+  "data" : {
+    "id" : 1,
+    "username" : "tiger",
+    "nickname" : "testnickname",
+    "tokenDto" : {
+      "grantType" : "Bearer",
+      "accessToken" : "Bearer (accessToken)",
+      "accessTokenExpiresIn" : 1,
+      "refreshToken" : "refreshToken"
+    }
+  }
+}
+----

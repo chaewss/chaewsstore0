@@ -1,0 +1,21 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 285
+
+{
+  "timestamp" : "2022-09-28T01:42:20.526725",
+  "code" : "UPDATE_PRODUCT_SUCCESS",
+  "status" : "OK",
+  "detail" : "상품 수정 성공",
+  "data" : {
+    "id" : 4,
+    "name" : "에어팟",
+    "price" : 90000,
+    "isSold" : true,
+    "accountId" : 2,
+    "createdAt" : null
+  }
+}
+----

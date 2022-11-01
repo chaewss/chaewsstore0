@@ -1,0 +1,7 @@
+[source,http,options="nowrap"]
+----
+DELETE /products/1 HTTP/1.1
+Authorization: Bearer (accessToken)
+Host: 3.38.29.135:8080
+
+----

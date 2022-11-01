@@ -1,0 +1,32 @@
+|===
+|Path|Type|Description
+
+|`+data.id+`
+|`+Number+`
+|주문 고유번호
+
+|`+data.accountId+`
+|`+Number+`
+|주문자 고유번호
+
+|`+data.product.id+`
+|`+Number+`
+|상품 고유번호
+
+|`+data.product.name+`
+|`+String+`
+|상품명
+
+|`+data.product.price+`
+|`+Number+`
+|상품 가격
+
+|`+data.product.isSold+`
+|`+Boolean+`
+|상품 품절 여부
+
+|`+data.product.accountId+`
+|`+Number+`
+|상품 주인 고유번호
+
+|===

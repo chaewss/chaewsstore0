@@ -1,0 +1,17 @@
+[source,options="nowrap"]
+----
+{
+  "timestamp" : "2022-09-28T01:42:20.492697",
+  "code" : "CREATE_PRODUCT_SUCCESS",
+  "status" : "CREATED",
+  "detail" : "상품 등록 성공",
+  "data" : {
+    "id" : 4,
+    "name" : "에어팟",
+    "price" : 80000,
+    "isSold" : false,
+    "accountId" : 2,
+    "createdAt" : null
+  }
+}
+----
