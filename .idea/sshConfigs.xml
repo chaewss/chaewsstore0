@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SshConfigs">
-    <configs>
-      <sshConfig host="ec2-15-164-110-225.ap-northeast-2.compute.amazonaws.com" id="d1d02795-7648-4575-9a2f-0c98b86b51be" keyPath="$USER_HOME$/Downloads/chaewsstore.pem" port="22" nameFormat="DESCRIPTIVE" username="ec2-user" useOpenSSHConfig="true" />
-    </configs>
-  </component>
-</project>
